@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Values;
@@ -14,21 +16,18 @@ var accessToken = builder.Configuration.GetSection("AccessToken");
 
 // JWT
 
-builder.Services.AddAuthentication(x =>
-{
-    x.DefaultAuthenticateScheme = "Token";
-})
-.AddJwtBearer("Token", options =>
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(accessToken["Secret"])),
         ValidateIssuer = true,
-        ValidIssuer = accessToken["Iss"],
         ValidateAudience = true,
-        ValidAudience = accessToken["Aud"],
         ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = accessToken["Iss"],
+        ValidAudience = accessToken["Aud"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(accessToken["Secret"])),
         ClockSkew = TimeSpan.Zero,
         RequireExpirationTime = true
     };
@@ -36,16 +35,19 @@ builder.Services.AddAuthentication(x =>
 
 // Ocelot
 
-builder.Services.AddOcelot(builder.Configuration); 
+builder.Services.AddOcelot(builder.Configuration);
+
+// Swagger
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Swagger
+
     app.UseSwagger();
     app.UseSwaggerUI();
 }

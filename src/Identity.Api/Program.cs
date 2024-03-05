@@ -11,6 +11,7 @@ using Identity.Infraestructure.Options;
 using Identity.Infraestructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,7 +58,15 @@ builder.Services.AddFluentValidationAutoValidation();
 // Swagger
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Microservice Identity",
+        Description = "Microservice of Identity",
+        Version = "v1"
+    });
+});
 
 builder.Services.AddControllers();
 

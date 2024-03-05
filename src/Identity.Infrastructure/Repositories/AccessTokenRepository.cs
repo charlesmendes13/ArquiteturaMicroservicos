@@ -1,6 +1,7 @@
 ﻿using Identity.Domain.Interfaces.Repositories;
 using Identity.Domain.Models;
 using Identity.Infraestructure.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -24,32 +25,42 @@ namespace Identity.Infraestructure.Repositories
 
         public async Task<AccessToken> CreateTokenByEmailAsync(string email)
         {
-            var now = DateTime.UtcNow;
-
-            var claims = new Claim[]
+            try
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Iat, now.ToUniversalTime().ToString(), ClaimValueTypes.Integer64)
-            };
+                var claims = new[]
+                {
+                     new Claim(ClaimTypes.Email, email),
+                };
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
+                var key = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(_secret != null ? _secret : "")
+                    );
 
-            var jwt = new JwtSecurityToken(
-                issuer: _iss,
-                audience: _aud,
-                claims: claims,
-                notBefore: now,
-                expires: now.Add(TimeSpan.FromMinutes(2)),
-                signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256));
+                var creds = new SigningCredentials(
+                    key, SecurityAlgorithms.HmacSha256
+                    );
 
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+                var jwt = new JwtSecurityToken(
+                    issuer: _iss,
+                    audience: _aud,
+                    expires: DateTime.Now.AddMinutes(Convert.ToInt32(30)),
+                    claims: claims,
+                    signingCredentials: creds
+                    );
 
-            return await Task.FromResult(new AccessToken
+                var accessKey = new JwtSecurityTokenHandler().WriteToken(jwt);
+                var validTo = jwt.ValidTo;
+
+                return await Task.FromResult(new AccessToken
+                {
+                    Token = JwtBearerDefaults.AuthenticationScheme + " " + accessKey,
+                    Expires = validTo
+                });
+            }
+            catch (Exception)
             {
-                Token = encodedJwt,
-                Expires = jwt.ValidFrom
-            });
+                throw;
+            }
         }
     }
 }
