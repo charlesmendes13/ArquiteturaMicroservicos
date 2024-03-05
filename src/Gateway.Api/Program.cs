@@ -1,16 +1,43 @@
+using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Values;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Configuration.AddJsonFile("configuration.json", optional: false, reloadOnChange: true);
+
+// Option
+
+var accessToken = builder.Configuration.GetSection("AccessToken");
+
+// JWT
+
+builder.Services.AddAuthentication(x =>
+{
+    x.DefaultAuthenticateScheme = "Token";
+})
+.AddJwtBearer("Token", options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(accessToken["Secret"])),
+        ValidateIssuer = true,
+        ValidIssuer = accessToken["Iss"],
+        ValidateAudience = true,
+        ValidAudience = accessToken["Aud"],
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        RequireExpirationTime = true
+    };
+});
 
 // Ocelot
 
 builder.Services.AddOcelot(builder.Configuration); 
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -26,6 +53,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+// JWT
+
+app.UseAuthentication();
 
 app.MapControllers();
 
