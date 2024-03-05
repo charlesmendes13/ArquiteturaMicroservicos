@@ -5,14 +5,30 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1DEAB9B1-050F-4815-95A2-9761DBEBD654}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Services", "01 - Services", "{5F0EEC8A-7F52-4447-816C-C32114B820F9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{5F0EEC8A-7F52-4447-816C-C32114B820F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{53081704-B041-4389-B29C-17B7C5BE04C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Api", "src\Gateway.Api\Gateway.Api.csproj", "{A4C2A3A5-B171-4BC2-93E4-D08A75098114}"
 EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A4C2A3A5-B171-4BC2-93E4-D08A75098114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C2A3A5-B171-4BC2-93E4-D08A75098114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C2A3A5-B171-4BC2-93E4-D08A75098114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C2A3A5-B171-4BC2-93E4-D08A75098114}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F0EEC8A-7F52-4447-816C-C32114B820F9} = {1DEAB9B1-050F-4815-95A2-9761DBEBD654}
+		{53081704-B041-4389-B29C-17B7C5BE04C0} = {1DEAB9B1-050F-4815-95A2-9761DBEBD654}
+		{A4C2A3A5-B171-4BC2-93E4-D08A75098114} = {5F0EEC8A-7F52-4447-816C-C32114B820F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D2E2D00D-2CEA-40C7-BE2D-DE757C7F5522}
