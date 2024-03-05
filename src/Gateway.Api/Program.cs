@@ -60,6 +60,9 @@ app.UseAuthentication();
 
 app.MapControllers();
 
-app.Run();
+// Ocelot
 
 await app.UseOcelot();
+
+app.Run();
+

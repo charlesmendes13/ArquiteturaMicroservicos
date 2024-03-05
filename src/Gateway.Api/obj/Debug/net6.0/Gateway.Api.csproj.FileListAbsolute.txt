@@ -41,3 +41,11 @@ D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\obj\Debug\net6.0\refin
 D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\obj\Debug\net6.0\Gateway.Api.pdb
 D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\obj\Debug\net6.0\Gateway.Api.genruntimeconfig.cache
 D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\obj\Debug\net6.0\ref\Gateway.Api.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Visual Studio\ArquiteturaMicroservicos\src\Gateway.Api\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
