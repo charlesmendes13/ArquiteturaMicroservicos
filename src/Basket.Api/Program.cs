@@ -7,7 +7,11 @@ using Basket.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Polly.Extensions.Http;
+using Polly;
 using System.Text;
+using Basket.Application.Handlers;
+using System.ComponentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +19,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IBasketService, BasketService>();
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
+builder.Services.AddTransient<ICatalogService, CatalogService>();
+builder.Services.AddTransient<ICatalogRepository, CatalogRepository>();
+
+builder.Services.AddTransient<CatalogHttpClientHandler>();
+builder.Services.AddHttpContextAccessor();
 
 // AutoMapper
 
@@ -47,6 +56,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     };
 });
 
+// HttpClient
+
+var catalog = builder.Configuration.GetSection("Catalog");
+
+builder.Services.AddHttpClient("Catalog", client =>
+{
+    client.BaseAddress = new Uri(catalog["BaseUrl"]);
+})
+    .AddHttpMessageHandler<CatalogHttpClientHandler>()
+    .SetHandlerLifetime(TimeSpan.FromMinutes(5))
+    .AddPolicyHandler(GetRetryPolicy());
+
 builder.Services.AddControllers();
 
 // Swagger
@@ -61,6 +82,18 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 });
+
+// Polly
+
+static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+{
+    return HttpPolicyExtensions
+        .HandleTransientHttpError()
+        .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+        .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2,
+                                                                    retryAttempt)));
+}
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

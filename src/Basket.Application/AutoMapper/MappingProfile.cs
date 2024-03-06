@@ -8,6 +8,7 @@ namespace Basket.Application.AutoMapper
     {
         public MappingProfile()
         {
+            CreateMap<Item, ItemViewModel>();
             CreateMap<CreateItemViewModel, Item>();
         }
     }

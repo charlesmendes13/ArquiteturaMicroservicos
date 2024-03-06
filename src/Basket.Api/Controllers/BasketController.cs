@@ -22,6 +22,14 @@ namespace Basket.Api.Controllers
             _basketService = basketService;
         }
 
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<ItemViewModel>>> Get(string userId)
+        {
+            var items = await _basketService.GetListItemByUserId(userId);
+
+            return Ok(_mapper.Map<IEnumerable<ItemViewModel>>(items));
+        }
+
         [HttpPost]
         public async Task<ActionResult> Post([FromQuery] string userId, [FromBody] CreateItemViewModel viewModel)
         {
