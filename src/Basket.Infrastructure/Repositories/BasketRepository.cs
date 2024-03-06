@@ -12,16 +12,16 @@ namespace Basket.Infrastructure.Repositories
         public BasketRepository(BasketContext context)
         {
             _context = context;
-        }
+        }        
 
-        public async Task<IEnumerable<Item>> GetListItemByUserId(string userId)
+        public async Task<Domain.Models.Basket> GetByUserId(string userId)
         {
             try
             {
-                return await _context.Item
-                    .Include(item => item.Basket)
-                    .Where(item => item.Basket.UserId == userId)
-                    .ToListAsync();
+                return await _context.Basket
+                    .Include(x => x.Items)
+                    .Where(x => x.UserId == userId)
+                    .FirstOrDefaultAsync();
             }
             catch (Exception)
             {
@@ -121,6 +121,6 @@ namespace Basket.Infrastructure.Repositories
             {
                 throw;
             }            
-        }
+        }        
     }
 }

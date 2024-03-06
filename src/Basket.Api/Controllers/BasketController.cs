@@ -23,11 +23,11 @@ namespace Basket.Api.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<ActionResult<IEnumerable<ItemViewModel>>> Get(string userId)
+        public async Task<ActionResult<BasketViewModel>> Get(string userId)
         {
-            var items = await _basketService.GetListItemByUserId(userId);
+            var basket = await _basketService.GetByUserId(userId);
 
-            return Ok(_mapper.Map<IEnumerable<ItemViewModel>>(items));
+            return Ok(_mapper.Map<BasketViewModel>(basket));
         }
 
         [HttpPost]

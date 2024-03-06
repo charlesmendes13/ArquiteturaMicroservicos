@@ -15,10 +15,10 @@ namespace Basket.Domain.Services
             _repository = repository;
             _catalogService = catalogService;
         }
-
-        public async Task<IEnumerable<Item>> GetListItemByUserId(string userId)
+        
+        public async Task<Models.Basket> GetByUserId(string userId)
         {
-            return await _repository.GetListItemByUserId(userId);
+            return await _repository.GetByUserId(userId);
         }
 
         public async Task AddItemToBasket(string userId, Item item)
@@ -35,6 +35,6 @@ namespace Basket.Domain.Services
         public async Task RemoveItemFromBasket(string userId, int itemId)
         {
             await _repository.RemoveItemFromBasket(userId, itemId);    
-        }
+        }        
     }
 }
