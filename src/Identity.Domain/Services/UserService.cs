@@ -11,12 +11,7 @@ namespace Identity.Domain.Services
         public UserService(IUserRepository repository)
         {
             _repository = repository;
-        }
-
-        public async Task<IEnumerable<User>> GetListAsync()
-        {
-            return await _repository.GetListAsync();
-        }
+        }       
 
         public async Task<User> GetByIdAsync(string id)
         {

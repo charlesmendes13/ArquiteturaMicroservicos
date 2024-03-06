@@ -12,19 +12,7 @@ namespace Identity.Infraestructure.Repositories
         public UserRepository(UserManager<User> userManager)
         {
             _userManager = userManager;
-        }
-
-        public async Task<IEnumerable<User>> GetListAsync()
-        {
-            try
-            {
-                return await _userManager.Users.ToListAsync();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        }      
 
         public async Task<User> GetByIdAsync(string id)
         {

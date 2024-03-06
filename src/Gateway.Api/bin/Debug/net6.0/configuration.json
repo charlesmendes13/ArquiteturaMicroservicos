@@ -2,7 +2,7 @@
   "Routes": [
     {
       "UpstreamPathTemplate": "/api/user",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "UpstreamHttpMethod": [ "POST", "PUT" ],
       "DownstreamPathTemplate": "/api/user",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [

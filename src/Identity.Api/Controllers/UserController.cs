@@ -19,14 +19,6 @@ namespace Identity.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<UserViewModel>> Get()
-        {
-            var users = await _userService.GetListAsync();
-
-            return Ok(_mapper.Map<List<UserViewModel>>(users));
-        }
-
         [HttpGet("{id}")]
         public async Task<ActionResult<UserViewModel>> Get(string id)
         {

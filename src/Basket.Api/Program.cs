@@ -12,6 +12,7 @@ using Polly;
 using System.Text;
 using Basket.Application.Handlers;
 using System.ComponentModel;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +81,24 @@ builder.Services.AddSwaggerGen(c =>
         Title = "Microservice Basket",
         Description = "Microservice of Basket",
         Version = "v1"
+    });
+    c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
+    {
+        Description = "Token Authorization header using the Bearer scheme.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = JwtBearerDefaults.AuthenticationScheme,
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = JwtBearerDefaults.AuthenticationScheme }
+            },
+            new[] { "readAccess", "writeAccess" }
+        }
     });
 });
 
