@@ -13,9 +13,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/api/user/{id}",
+      "UpstreamPathTemplate": "/api/user?id={id}",
       "UpstreamHttpMethod": [ "GET", "DELETE" ],
-      "DownstreamPathTemplate": "/api/user/{id}",
+      "DownstreamPathTemplate": "/api/user?id={id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -49,14 +49,38 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/api/product/{id}",
+      "UpstreamPathTemplate": "/api/product?id={id}",
       "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamPathTemplate": "/api/product/{id}",
+      "DownstreamPathTemplate": "/api/product?id={id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5004
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/basket?userid={userid}",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/basket?userid={userid}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5006
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/basket?userId={userid}&itemid={itemid}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamPathTemplate": "/api/basket?userId={userid}&itemid={itemid}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5006
         }
       ]
     }

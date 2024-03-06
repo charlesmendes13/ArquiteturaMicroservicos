@@ -41,7 +41,7 @@ namespace Identity.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<User>> Post(CreateUserViewModel viewModel)
+        public async Task<ActionResult> Post(CreateUserViewModel viewModel)
         {
             await _userService.InsertAsync(_mapper.Map<User>(viewModel));
             
@@ -49,7 +49,7 @@ namespace Identity.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<User>> Put(UpdateUserViewModel viewModel)
+        public async Task<ActionResult> Put(UpdateUserViewModel viewModel)
         {
             await _userService.UpdateAsync(_mapper.Map<User>(viewModel));
 
@@ -57,7 +57,7 @@ namespace Identity.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> Delete(string id)
+        public async Task<ActionResult> Delete(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
