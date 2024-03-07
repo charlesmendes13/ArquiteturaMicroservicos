@@ -65,7 +65,7 @@ namespace Payment.Domain.Services
 
             foreach (var item in items) 
             {
-                total += item.Price; 
+                total += (item.Price * item.Quantity); 
             }
 
             return total;
