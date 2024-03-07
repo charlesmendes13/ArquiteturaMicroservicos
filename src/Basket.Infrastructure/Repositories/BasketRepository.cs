@@ -14,7 +14,7 @@ namespace Basket.Infrastructure.Repositories
             _context = context;
         }        
 
-        public async Task<Domain.Models.Basket> GetByUserId(string userId)
+        public async Task<Domain.Models.Basket> GetByUserIdAsync(string userId)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace Basket.Infrastructure.Repositories
             }
         }
 
-        public async Task AddItemToBasket(string userId, Item item)
+        public async Task AddItemToBasketAsync(string userId, Item item)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace Basket.Infrastructure.Repositories
             }            
         }        
 
-        public async Task RemoveItemFromBasket(string userId, int itemId)
+        public async Task RemoveItemFromBasketAsync(string userId, int itemId)
         {
             try
             {
@@ -121,6 +121,36 @@ namespace Basket.Infrastructure.Repositories
             {
                 throw;
             }            
-        }        
+        }
+
+        public async Task DeleteByUserIdAsync(string userId)
+        {
+            try
+            {
+                // Verificar se o usuário já possui um carrinho
+                var basket = _context.Basket
+                    .Include(b => b.Items)
+                    .FirstOrDefault(b => b.UserId == userId);
+
+                if (basket != null)
+                {
+                    // Remove todos os Items
+                    foreach (var item in basket.Items) 
+                    {
+                        basket.Items.Remove(item);
+                        _context.Item.Remove(item);
+                    }
+
+                    // Remove o Carrinho
+                    _context.Basket.Remove(basket);
+
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

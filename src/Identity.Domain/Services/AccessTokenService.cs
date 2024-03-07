@@ -17,7 +17,7 @@ namespace Identity.Domain.Services
             _userService = userService;
         }
 
-        public async Task<AccessToken> GetAcessTokenByUserAsync(User user)
+        public async Task<AccessToken> CreateAcessTokenByUserAsync(User user)
         {
             var _user = await _userService.GetUserByEmailAsync(user.Email);
 

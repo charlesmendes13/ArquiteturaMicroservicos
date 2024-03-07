@@ -1,8 +1,8 @@
 ﻿using Basket.Domain.Models;
 
-namespace Basket.Domain.Interfaces.Repositories
+namespace Basket.Domain.Interfaces.Client
 {
-    public interface ICatalogRepository
+    public interface ICatalogClient
     {
         Task<Product> GetProductByIdAsync(int id);
     }

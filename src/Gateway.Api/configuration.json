@@ -62,7 +62,7 @@
     },
     {
       "UpstreamPathTemplate": "/api/basket/{userid}",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
       "DownstreamPathTemplate": "/api/basket/{userid}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -73,9 +73,9 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/api/basket?userid={userid}",
+      "UpstreamPathTemplate": "/api/basket/additem?userid={userid}",
       "UpstreamHttpMethod": [ "POST" ],
-      "DownstreamPathTemplate": "/api/basket?userid={userid}",
+      "DownstreamPathTemplate": "/api/basket/additem?userid={userid}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -85,14 +85,26 @@
       ]
     },
     {
-      "UpstreamPathTemplate": "/api/basket?userId={userid}&itemid={itemid}",
+      "UpstreamPathTemplate": "/api/basket/removeitem?userId={userid}&itemid={itemid}",
       "UpstreamHttpMethod": [ "DELETE" ],
-      "DownstreamPathTemplate": "/api/basket?userId={userid}&itemid={itemid}",
+      "DownstreamPathTemplate": "/api/basket/removeitem?userId={userid}&itemid={itemid}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5006
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/payment",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/payment",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5008
         }
       ]
     }

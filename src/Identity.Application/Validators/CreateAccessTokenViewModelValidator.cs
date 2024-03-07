@@ -3,9 +3,9 @@ using Identity.Application.ViewModels;
 
 namespace Identity.Application.Validators
 {
-    public class GetAccessTokenViewModelValidator : AbstractValidator<GetAccessTokenViewModel>
+    public class CreateAccessTokenViewModelValidator : AbstractValidator<CreateAccessTokenViewModel>
     {
-        public GetAccessTokenViewModelValidator()
+        public CreateAccessTokenViewModelValidator()
         {
             RuleFor(x => x.Email)
                 .NotEmpty().NotNull()

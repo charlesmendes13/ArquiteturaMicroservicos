@@ -13,6 +13,11 @@ using System.Text;
 using Basket.Application.Handlers;
 using System.ComponentModel;
 using Microsoft.OpenApi.Models;
+using Basket.Domain.Interfaces.Client;
+using Basket.Infrastructure.Client;
+using FluentValidation.AspNetCore;
+using FluentValidation;
+using Basket.Application.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +25,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IBasketService, BasketService>();
 builder.Services.AddTransient<IBasketRepository, BasketRepository>();
-builder.Services.AddTransient<ICatalogService, CatalogService>();
-builder.Services.AddTransient<ICatalogRepository, CatalogRepository>();
+builder.Services.AddTransient<ICatalogClient, CatalogClient>();
 
 builder.Services.AddTransient<CatalogHttpClientHandler>();
 builder.Services.AddHttpContextAccessor();
@@ -35,6 +39,11 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddDbContext<BasketContext>(option =>
      option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+// FluentValidation
+
+builder.Services.AddValidatorsFromAssemblyContaining<CreateItemViewModelValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 // JWT
 

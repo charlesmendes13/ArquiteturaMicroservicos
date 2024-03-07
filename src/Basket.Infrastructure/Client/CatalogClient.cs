@@ -1,14 +1,14 @@
-﻿using Basket.Domain.Interfaces.Repositories;
+﻿using Basket.Domain.Interfaces.Client;
 using Basket.Domain.Models;
 using Newtonsoft.Json;
 
-namespace Basket.Infrastructure.Repositories
+namespace Basket.Infrastructure.Client
 {
-    public class CatalogRepository : ICatalogRepository
+    public class CatalogClient : ICatalogClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public CatalogRepository(IHttpClientFactory httpClientFactory)
+        public CatalogClient(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }

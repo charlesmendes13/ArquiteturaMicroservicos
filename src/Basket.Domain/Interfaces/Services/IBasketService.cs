@@ -4,8 +4,9 @@ namespace Basket.Domain.Interfaces.Services
 {
     public interface IBasketService
     {
-        Task<Domain.Models.Basket> GetByUserId(string userId);
-        Task AddItemToBasket(string userId, Item item);
-        Task RemoveItemFromBasket(string userId, int itemId);
+        Task<Domain.Models.Basket> GetByUserIdAsync(string userId);
+        Task AddItemToBasketAsync(string userId, Item item);
+        Task RemoveItemFromBasketAsync(string userId, int itemId);
+        Task DeleteByUserIdAsync(string userId);
     }
 }

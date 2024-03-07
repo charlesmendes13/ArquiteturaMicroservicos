@@ -12,9 +12,9 @@ namespace Identity.Application.AutoMapper
             CreateMap<AccessToken, AccessTokenViewModel>()
                 .ForMember(dto => dto.TokenExpires, opt => opt.MapFrom(entity => entity.Expires));
 
-            CreateMap<GetAccessTokenViewModel, User>()
+            CreateMap<CreateAccessTokenViewModel, User>()
                 .ForMember(entity => entity.PasswordHash, opt => opt.MapFrom(dto => dto.Password));
-            CreateMap<User, GetAccessTokenViewModel>()
+            CreateMap<User, CreateAccessTokenViewModel>()
                 .ForMember(dto => dto.Password, opt => opt.MapFrom(entity => entity.PasswordHash));
 
             CreateMap<UserViewModel, User>();

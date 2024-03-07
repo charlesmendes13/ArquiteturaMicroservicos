@@ -51,7 +51,7 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
 
 builder.Services.AddValidatorsFromAssemblyContaining<CreateUserViewModelValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<UpdateUserViewModelValidator>();
-builder.Services.AddValidatorsFromAssemblyContaining<GetAccessTokenViewModelValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateAccessTokenViewModelValidator>();
 builder.Services.AddFluentValidationAutoValidation();
 
 // Swagger

@@ -25,23 +25,31 @@ namespace Basket.Api.Controllers
         [HttpGet("{userId}")]
         public async Task<ActionResult<BasketViewModel>> Get(string userId)
         {
-            var basket = await _basketService.GetByUserId(userId);
+            var basket = await _basketService.GetByUserIdAsync(userId);
 
             return Ok(_mapper.Map<BasketViewModel>(basket));
         }
 
-        [HttpPost]
+        [HttpPost("AddItem")]
         public async Task<ActionResult> Post([FromQuery] string userId, [FromBody] CreateItemViewModel viewModel)
         {
-            await _basketService.AddItemToBasket(userId, _mapper.Map<Item>(viewModel));
+            await _basketService.AddItemToBasketAsync(userId, _mapper.Map<Item>(viewModel));
 
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("RemoveItem")]
         public async Task<ActionResult> Delete([FromQuery] string userId, [FromQuery] int itemId)
         {
-            await _basketService.RemoveItemFromBasket(userId, itemId);
+            await _basketService.RemoveItemFromBasketAsync(userId, itemId);
+
+            return Ok();
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<ActionResult> Delete(string userId)
+        {
+            await _basketService.DeleteByUserIdAsync(userId);
 
             return Ok();
         }

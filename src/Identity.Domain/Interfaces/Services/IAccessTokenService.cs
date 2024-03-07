@@ -4,6 +4,6 @@ namespace Identity.Domain.Interfaces.Services
 {
     public interface IAccessTokenService
     {
-        Task<AccessToken> GetAcessTokenByUserAsync(User user);
+        Task<AccessToken> CreateAcessTokenByUserAsync(User user);
     }
 }

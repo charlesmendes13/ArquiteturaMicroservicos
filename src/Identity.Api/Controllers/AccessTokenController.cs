@@ -22,9 +22,9 @@ namespace Identity.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<AccessTokenViewModel>> Post(GetAccessTokenViewModel viewModel)
+        public async Task<ActionResult<AccessTokenViewModel>> Post(CreateAccessTokenViewModel viewModel)
         {
-            var token = await _accessTokenService.GetAcessTokenByUserAsync(_mapper.Map<User>(viewModel));
+            var token = await _accessTokenService.CreateAcessTokenByUserAsync(_mapper.Map<User>(viewModel));
 
             if (token != null)
             {
