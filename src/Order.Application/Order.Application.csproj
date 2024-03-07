@@ -7,13 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="AutoMapper\" />
-    <Folder Include="Validators\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>

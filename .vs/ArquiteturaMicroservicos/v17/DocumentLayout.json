@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Visual Studio\\ArquiteturaMicroservicos\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F8EA838-B0F6-4FD8-96A2-EDC5C8E8AD1A}|src\\Order.Infrastructure\\Order.Infrastructure.csproj|d:\\visual studio\\arquiteturamicroservicos\\src\\order.infrastructure\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F8EA838-B0F6-4FD8-96A2-EDC5C8E8AD1A}|src\\Order.Infrastructure\\Order.Infrastructure.csproj|solutionrelative:src\\order.infrastructure\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86205D1C-2A7A-474B-9982-B5F901CB3A72}|src\\Order.Domain\\Order.Domain.csproj|d:\\visual studio\\arquiteturamicroservicos\\src\\order.domain\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86205D1C-2A7A-474B-9982-B5F901CB3A72}|src\\Order.Domain\\Order.Domain.csproj|solutionrelative:src\\order.domain\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,6 +71,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\Visual Studio\\ArquiteturaMicroservicos\\src\\Order.Infrastructure\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "src\\Order.Infrastructure\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\Visual Studio\\ArquiteturaMicroservicos\\src\\Order.Infrastructure\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "src\\Order.Infrastructure\\Repositories\\OrderRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAABJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T06:06:18.397Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\Visual Studio\\ArquiteturaMicroservicos\\src\\Order.Domain\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "src\\Order.Domain\\Services\\OrderService.cs",
+              "ToolTip": "D:\\Visual Studio\\ArquiteturaMicroservicos\\src\\Order.Domain\\Services\\OrderService.cs",
+              "RelativeToolTip": "src\\Order.Domain\\Services\\OrderService.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAA1wBgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-07T05:51:30.457Z",
+              "EditorCaption": ""
             }
           ]
         }
