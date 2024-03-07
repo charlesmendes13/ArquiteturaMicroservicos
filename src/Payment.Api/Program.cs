@@ -75,11 +75,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 // HttpClient
 
-var catalog = builder.Configuration.GetSection("Basket");
+var basket = builder.Configuration.GetSection("Basket");
 
 builder.Services.AddHttpClient("Basket", client =>
 {
-    client.BaseAddress = new Uri(catalog["BaseUrl"]);
+    client.BaseAddress = new Uri(basket["BaseUrl"]);
 })
     .AddHttpMessageHandler<BasketHttpClientHandler>()
     .SetHandlerLifetime(TimeSpan.FromMinutes(5))
