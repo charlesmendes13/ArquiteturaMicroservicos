@@ -29,7 +29,7 @@ namespace Order.Infrastructure.Proxys
             email.From.Add(MailboxAddress.Parse(from));
             email.To.Add(MailboxAddress.Parse(to));
             email.Subject = subject;
-            email.Body = new TextPart(TextFormat.Html) { Text = html };
+            email.Body = new TextPart(TextFormat.Text) { Text = html };
 
             using (var smtp = new SmtpClient())
             {

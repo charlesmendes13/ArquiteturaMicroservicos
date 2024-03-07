@@ -38,19 +38,21 @@ namespace Order.Domain.Services
 
         private async Task CreateConfirmationOrderAsync(Models.Order order, string email)
         {
-            var text = "Obriogado por realizar sua compra!\n";
+            var text = $"Confirmacao do Pedido #{order.Id}\n";
+            text += "\nObrigado por realizar sua compra!\n";
             text += "\nLista de Itens do Pedido:\n";
 
             foreach (var item in order.Basket.Items)
             {
-                text += $"{item.Name}: Descricao: {item.Description} R$ {item.Price}\n";
+                text += $"{item.Quantity} {item.Name}: {item.Description} R$ {item.Price}\n";
             }
 
-            text += $"\nTotal da compra: R$ {order.Total}\n";          
+            text += $"\nTotal: R$ {order.Total}\n";          
+            text += $"\nVolte Sempre!\n";          
 
             await _emailProxy.SendAsync("no-replay@infnet.com",
                 email,
-                "Confirmation Order Infnet",
+                "Confirmacao de Pedido",
                 text);
         }
 
