@@ -3,7 +3,7 @@ Projeto de disciplina.
 
 ## Arquitetura
 
-Toda a aplicação foi desenvolvida utilizando Amicroserviços em .NET Core 6 banco de dados SQL Server e RabbitMQ.
+Toda a aplicação foi desenvolvida utilizando microserviços em .NET Core 6 banco de dados SQL Server e RabbitMQ.
 
 ## Ambiente
 
