@@ -1,4 +1,4 @@
-# Arquiterua de Microserviços e Mobile
+# Arquitetura de Microserviços e Mobile
 Projeto de disciplina.
 
 ## Arquitetura
