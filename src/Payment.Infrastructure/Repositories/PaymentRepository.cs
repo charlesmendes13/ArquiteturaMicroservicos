@@ -31,6 +31,13 @@ namespace Payment.Infrastructure.Repositories
             try
             {
                 await _context.Payment.AddAsync(payment);
+
+                if (payment.Card != null)
+                    await _context.Card.AddAsync(payment.Card);
+
+                if (payment.Pix != null)
+                    await _context.Pix.AddAsync(payment.Pix);
+
                 await _context.SaveChangesAsync();
             }
             catch (Exception)

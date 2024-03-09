@@ -8,6 +8,8 @@ namespace Payment.Infrastructure.Context
         public virtual DbSet<Domain.Models.Payment> Payment { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<Card> Card { get; set; }
+        public virtual DbSet<Pix> Pix { get; set; }
 
         public PaymentContext(DbContextOptions<PaymentContext> options)
             : base(options)

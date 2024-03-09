@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Payment.Domain.Models
 {
@@ -13,5 +14,11 @@ namespace Payment.Domain.Models
         [Required]
         public double Total { get; set; }
         public Transaction Transaction { get; set; }
+        [ForeignKey("Card")]
+        public int? CardId { get; set; }
+        public Card Card { get; set; }
+        [ForeignKey("Pix")]
+        public int? PixId { get; set; }
+        public Pix Pix { get; set; }
     }
 }

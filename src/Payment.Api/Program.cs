@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Payment.Application.AutoMapper;
 using Payment.Application.Handlers;
 using Payment.Domain.Interfaces.Client;
 using Payment.Domain.Interfaces.EventBus;
@@ -16,10 +15,12 @@ using Payment.Infrastructure.Context;
 using Payment.Infrastructure.EventBus;
 using Payment.Infrastructure.Options;
 using Payment.Infrastructure.Repositories;
+using Payment.Application.Validators;
+using Payment.Application.Interface;
+using Payment.Application.Service;
 using Polly;
 using Polly.Extensions.Http;
 using System.Text;
-using Payment.Application.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,13 +32,10 @@ builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
 builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<ITransactionService, TransactionService>();
+builder.Services.AddTransient<IPaymentAppService, PaymentAppService>();
 
 builder.Services.AddTransient<BasketHttpClientHandler>();
 builder.Services.AddHttpContextAccessor();
-
-// AutoMapper
-
-builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Context
 
@@ -47,7 +45,8 @@ builder.Services.AddDbContext<PaymentContext>(option =>
 
 // FluentValidation
 
-builder.Services.AddValidatorsFromAssemblyContaining<CreatePaymentViewModelValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePaymentCardViewModelValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreatePaymentPixViewModelValidator>();
 builder.Services.AddFluentValidationAutoValidation();
 
 // RabbitMQ
