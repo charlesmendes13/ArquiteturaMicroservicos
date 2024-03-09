@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Identity.Application.ViewModels;
 using Identity.Domain.Interfaces.Services;
 using Identity.Domain.Models;
@@ -26,12 +25,10 @@ namespace Identity.Api.Controllers
         {
             var token = await _accessTokenService.CreateAcessTokenByUserAsync(_mapper.Map<User>(viewModel));
 
-            if (token != null)
-            {
-                return Ok(_mapper.Map<AccessTokenViewModel>(token));
-            }
-
-            return Unauthorized();
+            if (token == null)            
+                return Unauthorized();
+            
+            return Ok(_mapper.Map<AccessTokenViewModel>(token));            
         }
     }
 }

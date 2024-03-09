@@ -12,5 +12,6 @@ namespace Payment.Domain.Models
         public int BasketId { get; set; }
         [Required]
         public double Total { get; set; }
+        public Transaction Transaction { get; set; }
     }
 }

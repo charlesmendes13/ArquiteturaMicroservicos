@@ -13,20 +13,25 @@ namespace Payment.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Domain.Models.Payment> InsertAsync(Domain.Models.Payment payment)
+        public async Task<Domain.Models.Payment> GetByBasketIdAsync(int basketId)
         {
             try
             {
-                var payment_ = await _context.Payment
-                    .FirstOrDefaultAsync(x => x.BasketId == payment.BasketId);
+                return await _context.Payment
+                    .FirstOrDefaultAsync(x => x.BasketId == basketId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-                if (payment_ != null)
-                    return null;
-
+        public async Task InsertAsync(Domain.Models.Payment payment)
+        {
+            try
+            {
                 await _context.Payment.AddAsync(payment);
                 await _context.SaveChangesAsync();
-
-                return payment;
             }
             catch (Exception)
             {

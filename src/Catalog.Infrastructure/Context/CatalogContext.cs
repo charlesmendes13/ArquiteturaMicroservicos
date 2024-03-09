@@ -28,7 +28,7 @@ namespace Catalog.Infrastructure.Context
                 {
                     Id = 2,
                     Name = "Refrigerante Pepsi",
-                    Description = "Refrigerante sabor Cola",
+                    Description = "Refrigerante Sabor Cola",
                     Price = 5.00
                 });
         } 

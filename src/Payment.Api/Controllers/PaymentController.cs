@@ -24,7 +24,10 @@ namespace Payment.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(CreatePaymentViewModel viewModel)
         {
-            await _paymentService.InsertAsync(_mapper.Map<Domain.Models.Payment>(viewModel));
+            var payment = await _paymentService.InsertAsync(_mapper.Map<Domain.Models.Payment>(viewModel));
+
+            if (payment)
+                return BadRequest();
 
             return Ok();
         }

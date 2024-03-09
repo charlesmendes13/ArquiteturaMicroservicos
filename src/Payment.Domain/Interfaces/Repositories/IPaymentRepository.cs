@@ -2,6 +2,7 @@
 {
     public interface IPaymentRepository
     {
-        Task<Models.Payment> InsertAsync(Models.Payment payment);
+        Task<Models.Payment> GetByBasketIdAsync(int basketId);
+        Task InsertAsync(Models.Payment payment);
     }
 }

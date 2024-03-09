@@ -28,7 +28,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddTransient<IBasketClient, BasketClient>();
 builder.Services.AddTransient<IOrderEventBus, OrderEventBus>();
 builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
+builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
+builder.Services.AddTransient<ITransactionService, TransactionService>();
 
 builder.Services.AddTransient<BasketHttpClientHandler>();
 builder.Services.AddHttpContextAccessor();
